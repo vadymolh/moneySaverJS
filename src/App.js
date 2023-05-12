@@ -3,15 +3,16 @@ import logo from './logo.svg';
 import Navbar from './Components/Navbar';
 import AddBill from './Components/AddBill'
 import M from 'materialize-css'
+import { BillContext, BillProvider} from './Context/BillContext';
 
 
 function App() {
   return (
     <>
-      <Navbar/>
-      <div className="container">
-        <AddBill/>
-      </div>
+        <Navbar/>
+        <div className="container">
+          <AddBill/>
+        </div>
     </>
   );
 }

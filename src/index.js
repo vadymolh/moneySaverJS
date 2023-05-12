@@ -4,12 +4,14 @@ import './index.css';
 import App from './App'; // Main Component
 import reportWebVitals from './reportWebVitals';
 import 'materialize-css/dist/css/materialize.min.css'
-
+import { BillProvider } from './Context/BillContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BillProvider>
+      <App />
+    </BillProvider>
   </React.StrictMode>
 );
 

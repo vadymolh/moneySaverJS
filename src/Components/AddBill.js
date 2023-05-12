@@ -1,23 +1,16 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
+import { BillContext, BillProvider} from '../Context/BillContext';
 
 function AddBill(){
     const [billTitle, setBillTitle] = useState('');
     const [billCost, setBillCost] = useState('');
-    const [bills, setBills] = useState([]);
 
-    useEffect(()=>{
-        setBills(JSON.parse(localStorage.getItem('my-bills')) || [])
-        console.log(bills);
-    }, [setBills] );
+    const { updateBills } = useContext(BillContext);
 
-    const updateBills = (bill) =>{    
-            const data  = [...bills, bill];
-            localStorage.setItem('my-bills', 
-                             JSON.stringify(data));
-            setBills(data);    
-        console.log(bills);
+    const clearForm = ()=>{
+      setBillTitle('');
+      setBillCost('');
     }
-
     return(
     <>
     <div className="row">
@@ -50,6 +43,7 @@ function AddBill(){
                "monthlyCost": billCost,
                "enabled": true 
             });
+            clearForm();
        }}>Додати</a>
     </div>
     
