@@ -13,16 +13,30 @@ const BillProvider = ({children}) =>{
 
     const updateBills = (bill) =>{    
         const data  = [...bills, bill];
+        data.sort( (a,b) =>
+            a.title < b.title
+        )
         localStorage.setItem('my-bills', 
                          JSON.stringify(data));
         setBills(data);    
-        console.log(bills);
+    }
+
+    const editBill = (updateBill) => {
+        const oldBills = bills.filter((bill)=> bill.title !== updateBill.title) 
+        const updatedBills = [...oldBills, updateBill]
+        updatedBills.sort( (a,b) =>
+            a.title < b.title
+        )
+        localStorage.setItem('my-bills', 
+                            JSON.stringify(updatedBills));
+        setBills(updatedBills); 
     }
 
     return(
         <BillContext.Provider value={{
             bills,
             updateBills,
+            editBill,
         }}>
             {children}
         </BillContext.Provider>
