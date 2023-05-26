@@ -5,6 +5,8 @@ import AddBill from './Components/AddBill'
 import BillList from './Components/BillList';
 import M from 'materialize-css'
 import { BillContext, BillProvider} from './Context/BillContext';
+import BillTotal from './Components/BillTotal';
+import IntervalOptions from './Components/IntervalOptions';
 
 
 function App() {
@@ -12,8 +14,10 @@ function App() {
     <>
         <Navbar/>
         <div className="container">
+          <IntervalOptions/>
           <AddBill/>
           <BillList/>
+          <BillTotal/>
         </div>
     </>
   );

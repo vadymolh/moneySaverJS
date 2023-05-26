@@ -1,9 +1,28 @@
-import {useState, createContext, useEffect} from 'react';
+import {useState, createContext, useEffect, useReducer} from 'react';
 
 const BillContext = createContext();
 
+const reducer = (state, action) =>{
+    state.total = action.total
+    if (action.type === "Daily"){
+        return state.total *12 /365
+    } else if (action.type === "Weekly"){
+        return state.total *12 /52
+    }
+    else if (action.type === "Monthly"){
+        return state.total
+    }
+    else if (action.type === "Yearly"){
+        return state.total *12
+    }
+}
+
+
 const BillProvider = ({children}) =>{
     const [bills, setBills] = useState([]);
+    const [costInterval, setCostInterval] = useState('Monthly');
+
+    const [modeTotal, dispatchTotal] = useReducer(reducer, {total: 0});
 
     useEffect(()=>{
         setBills(JSON.parse(localStorage.getItem('my-bills')) || [])
@@ -37,6 +56,10 @@ const BillProvider = ({children}) =>{
             bills,
             updateBills,
             editBill,
+            costInterval,
+            setCostInterval,
+            dispatchTotal,
+            modeTotal
         }}>
             {children}
         </BillContext.Provider>
