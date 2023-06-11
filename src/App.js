@@ -12,12 +12,19 @@ import IntervalOptions from './Components/IntervalOptions';
 function App() {
   return (
     <>
-        <Navbar/>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
         <div className="container">
-          <IntervalOptions/>
-          <AddBill/>
-          <BillList/>
-          <BillTotal/>
+          <div className="row">
+            <div className="col s12 m12 l8">
+              <IntervalOptions/>
+              <BillTotal/>
+            </div>
+            <div className="col s12 m12 l4 ">
+              <BillList/>
+            </div>
+          </div>
+          <div className="row"><AddBill/></div>  
+          
         </div>
     </>
   );

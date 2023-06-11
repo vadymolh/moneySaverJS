@@ -13,18 +13,20 @@ function BillList(){
             {   
                 bills.map((bill, index)=>{
                     return (
-                    <a href="#!" 
-                       class={bill.enabled ? "collection-item active": "collection-item"}
-                       key={index} 
-                       onClick={
-                        ()=>{editBill({
-                            "title": bill.title,
-                            "monthlyCost": bill.monthlyCost,
-                            "enabled": !bill.enabled 
-                         })}
-                       }>
-                        {bill.title} - {bill.monthlyCost} грн.
-                    </a>)
+                     
+                        <a href="#!" 
+                        className={bill.enabled ? "collection-item active": "collection-item"}
+                        key={index} 
+                        onClick={
+                            ()=>{editBill({
+                                "title": bill.title,
+                                "monthlyCost": bill.monthlyCost,
+                                "enabled": !bill.enabled 
+                            })}
+                        }>
+                            {bill.title} - {bill.monthlyCost} грн.
+                        </a>
+                    )
                 })
             }
             </div>
