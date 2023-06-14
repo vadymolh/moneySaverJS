@@ -32,7 +32,6 @@ const BillProvider = ({children}) =>{
 
     useEffect(()=>{
         setBills(JSON.parse(localStorage.getItem('my-bills')) || [])
-        console.log(bills);
     }, [setBills] );
 
 
@@ -58,9 +57,15 @@ const BillProvider = ({children}) =>{
         
         const data  = [...bills, bill];
         
-        data.sort( (a,b) =>
-            a.title < b.title
+        data.sort( (a,b) =>{
+            if (a.title < b.title){
+                return -1
+            } else if (a.title < b.title) {
+                return 1
+            } else return 0 
+        }
         )
+        console.log("Added bill: ", data);
         localStorage.setItem('my-bills', 
                          JSON.stringify(data));
         setBills(data);    
@@ -70,9 +75,15 @@ const BillProvider = ({children}) =>{
     const editBill = (updateBill) => {
         const oldBills = bills.filter((bill)=> bill.title !== updateBill.title) 
         const updatedBills = [...oldBills, updateBill]
-        updatedBills.sort( (a,b) =>
-            a.title < b.title
+        updatedBills.sort((a,b) =>{
+            if (a.title < b.title){
+                return -1
+            } else if (a.title < b.title) {
+                return 1
+            } else return 0 
+        }
         )
+        console.log("updated bill: ", updatedBills);
         localStorage.setItem('my-bills', 
                             JSON.stringify(updatedBills));
         setBills(updatedBills); 
